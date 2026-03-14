@@ -201,18 +201,30 @@ footer h4 {
   footer h4 {
     font-size: 1.4rem;
   }
+  footer p {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 
   #social-media {
     background-color: transparent;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 1rem;
     margin-bottom: 2rem;
   }
 
   #Contact-us {
     background-color: transparent;
-    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
   }
 
   #Contact-us p {
