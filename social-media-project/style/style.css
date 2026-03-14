@@ -128,6 +128,7 @@ footer h4 {
 }
 
 #social-media {
+  background-color: transparent;
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -135,16 +136,28 @@ footer h4 {
 }
 
 .social-icon {
+  background-color: transparent;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
 }
 
+.social-icon a {
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: var(--white);
+}
+
 .social-icon img {
   background-color: transparent;
   width: 1.5rem;
   height: 1.5rem;
+  filter: brightness(0) invert(1);
 }
 
 .social-icon p {
@@ -153,7 +166,11 @@ footer h4 {
 }
 
 #Contact-us {
+  background-color: transparent;
   margin-bottom: 2rem;
+}
+footer h4 {
+  color: var(--text-gray);
 }
 
 #Contact-us p {
