@@ -1,0 +1,22 @@
+[
+  {
+    "id": "u_001",
+    "username": "NeuralLink_Gamer",
+    "email": "player1@sync-stream.com",
+    "password": "hashed_or_plain_password",
+    "profilePicture": "assets/images/avatar1.png",
+    "bio": "Hooked on the new Sync-Stream protocol. Always online.",
+    "following": ["u_002", "u_005"],
+    "followers": ["u_003"]
+  },
+  {
+    "id": "u_002",
+    "username": "Cyber_Player2",
+    "email": "player2@domain.com",
+    "password": "hashed_or_plain_password",
+    "profilePicture": "assets/images/avatar2.png",
+    "bio": "Leveling up daily.",
+    "following": [],
+    "followers": ["u_001"]
+  }
+]
