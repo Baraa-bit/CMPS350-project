@@ -10,7 +10,74 @@
     <header id="page-header-with-logo">
       <span id="logo">T</span>
     </header>
-    <main></main>
+    <main id="signUp-main">
+      <div>
+        <h2>get started with Tawasl</h2>
+        <p>
+          Create an account to connect with friends, family and communities of
+          people who share your interests.
+        </p>
+      </div>
+      <div>
+        <label for="name-input">Full Name</label>
+        <input
+          type="text"
+          id="name-input"
+          class="input-field"
+          placeholder="Enter your full name"
+        />
+      </div>
+      <div>
+        <label for="date">Birthday</label>
+        <input
+          type="date"
+          id="date"
+          class="input-field"
+          min="1900-01-01"
+          max="2026-01-01"
+        />
+      </div>
+
+      <div id="gender-div">
+        <span>gender</span>
+        <form action="/submit_form" method="post">
+          <label>
+            <input type="radio" name="gender" value="male" required />
+            Male
+          </label>
+          <label>
+            <input type="radio" name="gender" value="female" />
+            Female
+          </label>
+        </form>
+      </div>
+      <div>
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          class="input-field"
+          placeholder="Enter your Email"
+        />
+      </div>
+      <div>
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          class="input-field"
+          placeholder="Enter your Pass"
+        />
+      </div>
+      <p>
+        By tapping on submit you agree to create an account on tawasl and agree
+        to our term of use
+      </p>
+      <button class="button">Submit</button>
+      <button class="button" style="color: #0b1f6d; background-color: white">
+        I already have and account
+      </button>
+    </main>
     <footer>
       <p>
         Tawasl is a simple social platform project created to help people

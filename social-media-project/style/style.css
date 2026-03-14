@@ -28,6 +28,14 @@ html {
   margin: 1.5rem 0;
 }
 
+#page-header-with-logo {
+  background-color: var(--border-gray);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0 2rem 0;
+}
+
 #logo {
   display: flex;
   justify-content: center;
@@ -49,6 +57,7 @@ html {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 5rem;
 }
 #login-title {
   color: var(--primary-blue);
@@ -101,6 +110,99 @@ html {
   margin-bottom: 0;
   font-size: 1.25rem;
   color: var(--dark-blue);
+}
+
+#signUp-main {
+  margin: 0.5rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2.5rem;
+  gap: 1.5rem;
+}
+#signUp-main > div {
+  width: 100%;
+}
+
+#signUp-main p {
+  font-size: 1.25rem;
+  color: var(--secondary-blue);
+}
+#signUp-main h2 {
+  font-size: 2.25rem;
+  color: var(--primary-blue);
+  padding-bottom: 0.5rem;
+  font-weight: bold;
+}
+#signUp-main > div > label {
+  font-size: 1.25rem;
+  color: var(--secondary-blue);
+}
+
+#signUp-main input,
+button {
+  width: 100%;
+}
+
+#gender-div {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+#gender-div form {
+  display: flex;
+  gap: 2rem;
+  width: 100%;
+}
+
+#gender-div label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.1rem;
+  color: var(--dark-blue);
+  background-color: transparent;
+  cursor: pointer;
+}
+
+#gender-div input[type="radio"] {
+  cursor: pointer;
+  width: auto;
+}
+
+#gender-div > span {
+  display: block;
+  font-size: 1.25rem;
+  color: var(--secondary-blue);
+}
+
+#gender-div input[type="radio"] {
+  cursor: pointer;
+  width: auto;
+  height: 1.2rem;
+  width: 1.2rem;
+  accent-color: var(--primary-blue);
+}
+
+input[type="date"] {
+  padding: 1rem 1.5rem;
+  font-size: 1.2rem;
+  border: 1px solid var(--border-gray);
+  border-radius: 8px;
+  color: var(--text-gray);
+}
+
+input[type="date"]:focus {
+  border: 2px solid var(--dark-blue);
+  outline: none;
+}
+
+input[type="date"]::before {
+  content: attr(placeholder);
+  color: var(--text-gray);
 }
 
 footer {
@@ -193,6 +295,10 @@ footer h4 {
 /////////////////////////////////////////////////// */
 
 @media screen and (min-width: 481px) {
+  #signUp-main {
+    margin: 0;
+    padding: 3rem;
+  }
   footer {
     padding: 3rem 2rem;
   }
@@ -245,20 +351,22 @@ footer h4 {
   #page-header {
     display: none;
   }
-  #page-header-with-logo {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0.5rem;
-    margin: 1.5rem 0;
-  }
+
   #login-main {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr auto;
     min-height: calc(100vh - 5rem);
   }
-
+  #signUp-main {
+    margin: 5rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5rem 10rem;
+    gap: 1.5rem;
+  }
   #title {
     background-color: transparent;
     color: var(--white);
