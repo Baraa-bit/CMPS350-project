@@ -25,6 +25,7 @@ html {
   justify-content: center;
   align-items: center;
   padding: 0.5rem;
+  margin: 1.5rem 0;
 }
 
 #logo {
@@ -103,6 +104,72 @@ html {
   color: var(--dark-blue);
 }
 
+footer {
+  background-color: var(--dark-blue);
+  color: var(--white);
+  padding: 2rem 1.5rem;
+  text-align: center;
+}
+
+footer p {
+  background-color: transparent;
+  color: var(--white);
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+footer h4 {
+  background-color: transparent;
+  color: var(--primary-blue);
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  margin-top: 1.5rem;
+}
+
+#social-media {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.social-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.social-icon img {
+  background-color: transparent;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.social-icon p {
+  background-color: transparent;
+  margin: 0;
+}
+
+#Contact-us {
+  margin-bottom: 2rem;
+}
+
+#Contact-us p {
+  background-color: transparent;
+  margin-bottom: 0.5rem;
+}
+
+#copyrights {
+  background-color: transparent;
+  color: var(--text-gray);
+  border-top: 1px solid var(--border-gray);
+  padding-top: 1.5rem;
+  margin-top: 2rem;
+  font-size: 0.9rem;
+}
+
 /* ///////////////////////////////////////////////////
 ///////////////////////////////////////////////////
 ///////////////////////////////////////////////////
@@ -110,6 +177,35 @@ html {
 /////////////////////////////////////////////////// */
 
 @media screen and (min-width: 481px) {
+  footer {
+    padding: 3rem 2rem;
+  }
+
+  footer h4 {
+    font-size: 1.4rem;
+  }
+
+  #social-media {
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  #Contact-us {
+    background-color: transparent;
+    margin-bottom: 2rem;
+  }
+
+  #Contact-us p {
+    background-color: transparent;
+    margin-bottom: 0.5rem;
+  }
+
+  .social-icon {
+    flex-direction: column;
+  }
 }
 /* ///////////////////////////////////////////////////
 ///////////////////////////////////////////////////
@@ -124,6 +220,7 @@ html {
   #login-main {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr auto;
     min-height: calc(100vh - 5rem);
   }
 
@@ -166,5 +263,42 @@ html {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+  }
+
+  footer {
+    padding: 4rem 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 2rem;
+    text-align: left;
+    background-color: var(--dark-blue);
+  }
+
+  footer > p:first-child {
+    grid-column: 1 / 2;
+    background-color: transparent;
+  }
+
+  #social-media {
+    background-color: transparent;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .social-icon {
+    background-color: transparent;
+    flex-direction: row;
+  }
+
+  #Contact-us {
+    grid-column: 3 / 4;
+    background-color: transparent;
+  }
+
+  #copyrights {
+    grid-column: 1 / -1;
+    text-align: center;
+    background-color: transparent;
   }
 }
