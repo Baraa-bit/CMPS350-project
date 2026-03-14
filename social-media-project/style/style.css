@@ -104,7 +104,9 @@ html {
   color: var(--white);
   background-color: var(--primary-blue);
 }
-
+.button:hover {
+  border: 2px solid var(--primary-blue);
+}
 #signUp-link {
   padding: 0;
   margin-bottom: 0;
