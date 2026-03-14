@@ -1,6 +1,6 @@
 :root {
-  --primary-blue: #1e3a8a;
-  --secondary-blue: #1d4ed8;
+  --primary-blue: #1d4ed8;
+  --secondary-blue: #1e3a8a;
   --dark-blue: #0b1f6d;
 
   --light-gray: #f3f4f6;
@@ -31,7 +31,7 @@
   width: 5rem;
   font-weight: bold;
   color: var(--white);
-  background-color: var(--dark-blue);
+  background-color: var(--primary-blue);
   border-radius: 50%;
 }
 
@@ -48,7 +48,6 @@
 #login-title {
   color: var(--primary-blue);
   font-size: 2rem;
-
 }
 
 #login-inputs {
@@ -74,22 +73,39 @@
 .input-field:focus {
   border: 2px solid var(--dark-blue);
   outline: none;
+  color: var(--dark-blue);
 }
 
 .input-field::placeholder {
   color: var(--text-gray);
 }
 
+.button {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  display: inline-block;
+  border: 1px solid var(--primary-blue);
+  border-radius: 8px;
+  box-sizing: border-box;
+  font-size: 1.2rem;
+  color: var(--white);
+  background-color: var(--primary-blue);
+}
+
+#signUp-link {
+  padding: 0;
+  margin-bottom: 0;
+  font-size: 1.25rem;
+  color: var(--dark-blue);
+}
+
 /* ///////////////////////////////////////////////////
 ///////////////////////////////////////////////////
 ///////////////////////////////////////////////////
 ///////////////////////////////////////////////////
 /////////////////////////////////////////////////// */
 
-@media screen and (min-width: 600px) {
-  #home-img-section {
-    display: inline;
-  }
+@media screen and (min-width: 481px) {
 }
 /* ///////////////////////////////////////////////////
 ///////////////////////////////////////////////////
@@ -97,5 +113,8 @@
 ///////////////////////////////////////////////////
 /////////////////////////////////////////////////// */
 
-@media screen and (min-width: 961px) {
+@media screen and (min-width: 769px) {
+  #home-img-section {
+    display: inline;
+  }
 }
