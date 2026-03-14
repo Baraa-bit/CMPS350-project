@@ -2,8 +2,6 @@
   --primary-blue: #1e3a8a;
   --secondary-blue: #1d4ed8;
   --dark-blue: #0b1f6d;
-  --gradient-blue-start: #1d2b8f;
-  --gradient-blue-end: #0f4db8;
 
   --light-gray: #f3f4f6;
   --border-gray: #d1d5db;
@@ -14,4 +12,42 @@
 
 * {
   box-sizing: border-box;
+  background-color: var(--white);
+  font-family: sans-serif;
 }
+#page-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+}
+
+#logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5rem;
+  height: 5rem;
+  width: 5rem;
+  font-weight: bold;
+  color: var(--white);
+  background-color: var(--dark-blue);
+  border-radius: 50%;
+}
+
+/* ///////////////////////////////////////////////////
+///////////////////////////////////////////////////
+///////////////////////////////////////////////////
+///////////////////////////////////////////////////
+/////////////////////////////////////////////////// */
+
+/* @media screen and (min-width: 600px) {
+} */
+/* ///////////////////////////////////////////////////
+///////////////////////////////////////////////////
+///////////////////////////////////////////////////
+///////////////////////////////////////////////////
+/////////////////////////////////////////////////// */
+/* 
+@media screen and (min-width: 961px) {
+} */
