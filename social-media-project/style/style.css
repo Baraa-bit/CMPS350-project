@@ -106,6 +106,7 @@ html {
 }
 .button:hover {
   border: 2px solid var(--primary-blue);
+  font-weight: bold;
 }
 #signUp-link {
   padding: 0;
