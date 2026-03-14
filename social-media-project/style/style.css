@@ -35,8 +35,49 @@
   border-radius: 50%;
 }
 
-#home-img-section{
-    display: none;
+#home-img-section {
+  display: none;
+}
+
+#login-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#login-title {
+  color: var(--primary-blue);
+  font-size: 2rem;
+
+}
+
+#login-inputs {
+  padding: 2rem 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  border: solid black;
+}
+
+.input-field {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  display: inline-block;
+  border: 1px solid var(--border-gray);
+  border-radius: 8px;
+  box-sizing: border-box;
+  font-size: 1.2rem;
+}
+
+.input-field:focus {
+  border: 2px solid var(--dark-blue);
+  outline: none;
+}
+
+.input-field::placeholder {
+  color: var(--text-gray);
 }
 
 /* ///////////////////////////////////////////////////
@@ -46,9 +87,9 @@
 /////////////////////////////////////////////////// */
 
 @media screen and (min-width: 600px) {
-    #home-img-section{
-        display: inline;
-}
+  #home-img-section {
+    display: inline;
+  }
 }
 /* ///////////////////////////////////////////////////
 ///////////////////////////////////////////////////
