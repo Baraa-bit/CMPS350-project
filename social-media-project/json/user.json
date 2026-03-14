@@ -1,7 +1,7 @@
 [
   {
     "id": "u_001",
-    "username": "NeuralLink_Gamer",
+    "name": "NeuralLink_Gamer",
     "email": "player1@sync-stream.com",
     "password": "hashed_or_plain_password",
     "profilePicture": "assets/images/avatar1.png",
@@ -11,7 +11,7 @@
   },
   {
     "id": "u_002",
-    "username": "Cyber_Player2",
+    "name": "Cyber_Player2",
     "email": "player2@domain.com",
     "password": "hashed_or_plain_password",
     "profilePicture": "assets/images/avatar2.png",
