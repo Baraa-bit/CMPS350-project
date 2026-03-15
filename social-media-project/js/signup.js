@@ -41,6 +41,17 @@ function checkDublicateEmail(email) {
   return !users.some((user) => user.email === email);
 }
 
+function hideErrorMessages() {
+  const incompleteSignup = document.querySelector("#incomplete-signup");
+  incompleteSignup.style.display = "none";
+  const wrongEmailFormat = document.querySelector("#wrong-email-Format");
+  wrongEmailFormat.style.display = "none";
+  const dublicatedEmail = document.querySelector("#dublicate-email");
+  dublicatedEmail.style.display = "none";
+  const invlidPassword = document.querySelector("#validate-password");
+  invlidPassword.style.display = "none";
+}
+
 document.addEventListener("DOMContentLoaded", async (_) => {
   const users = await getUsers();
 
@@ -103,6 +114,7 @@ document.addEventListener("DOMContentLoaded", async (_) => {
       }
       return;
     }
+
     const newUser = {
       id: generateUserId(),
       name: name,
@@ -115,6 +127,8 @@ document.addEventListener("DOMContentLoaded", async (_) => {
       following: [],
       followers: [],
     };
+    hideErrorMessages();
+
     users.push(newUser);
     localStorage.setItem("users", JSON.stringify(users));
     sessionStorage.setItem("currentUser", JSON.stringify(newUser));
