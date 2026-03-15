@@ -3,13 +3,13 @@
     "postId": "p_101",
     "authorId": "u_001",
     "content": "Just uploaded my consciousness to the new gaming rig!",
-    "timestamp": "2026-03-12T14:30:00Z",
+    "timestamp": "2026-03-12",
     "likedBy": ["u_002", "u_005", "u_010"],
     "comments": [
       {
         "authorId": "u_002",
         "content": "Setup looks insane, let's co-op later!",
-        "timestamp": "2026-03-12T15:00:00Z"
+        "timestamp": "2026-03-12"
       }
     ]
   }

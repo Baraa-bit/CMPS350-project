@@ -28,19 +28,19 @@
         />
       </div>
       <div>
-        <label for="date">Birthday</label>
+        <label for="date-input">Birthday</label>
         <input
           type="date"
-          id="date"
+          id="date-input"
           class="input-field"
           min="1900-01-01"
-          max="2026-01-01"
+          max="2019-12-31"
         />
       </div>
 
       <div id="gender-div">
         <span>gender</span>
-        <form action="/submit_form" method="post">
+        <form id="gender-form" action="/submit_form" method="post">
           <label>
             <input type="radio" name="gender" value="male" required />
             Male
@@ -52,19 +52,20 @@
         </form>
       </div>
       <div>
-        <label for="email">Email</label>
+        <label for="email-input">Email</label>
         <input
           type="email"
-          id="email"
+          id="email-input"
           class="input-field"
           placeholder="Enter your Email"
         />
       </div>
+      <div id="dublicate-email">There is an account with this email</div>
       <div>
         <label for="password">Password</label>
         <input
           type="password"
-          id="password"
+          id="#password-input"
           class="input-field"
           placeholder="Enter your Password"
         />
@@ -73,7 +74,8 @@
         By tapping on submit you agree to create an account on Tawasl and agree
         to our term of use
       </p>
-      <button class="button">Submit</button>
+      <div id="incomplete-signup">Please complete all required field</div>
+      <button id="signup-button" class="button">Submit</button>
       <button
         class="button"
         style="color: #1d4ed8; background-color: white"

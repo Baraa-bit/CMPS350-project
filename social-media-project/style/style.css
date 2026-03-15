@@ -154,6 +154,13 @@ button {
   width: 100%;
 }
 
+#dublicate-email,
+#incomplete-signup {
+  font-size: 1rem;
+  color: red;
+  display: none;
+}
+
 #gender-div {
   width: 100%;
   display: flex;
