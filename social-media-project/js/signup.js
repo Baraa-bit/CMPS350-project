@@ -1,7 +1,9 @@
-import { nanoId } from "nanoid";
+import { nanoid } from "https://cdn.jsdelivr.net/npm/nanoid/nanoid.js";
 
 async function loadJsonToStorage() {
   try {
+    if (localStorage.getItem("users")) return; // don't overwrite if already loaded
+
     const response = await fetch("../json/user.json");
     const data = await response.json();
     localStorage.setItem("users", JSON.stringify(data));
@@ -18,38 +20,30 @@ async function getUsers() {
 }
 
 function generateUserId() {
-  return nanoId(8); // Generates a unique ID with 8 characters
+  return nanoid(8); // Generates a unique ID with 8 characters
 }
 function validatePassword(password) {
-  if (!password) {
-    return false;
-  }
-  if (password.length < 8) {
-    return false;
-  }
-  if (!/[A-Z]/.test(password)) {
-    return false;
-  }
-  if (!/[a-z]/.test(password)) {
-    return false;
-  }
-  if (!/[0-9]/.test(password)) {
-    return false;
-  }
-  if (!/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password)) {
-    return false;
-  }
+  if (!password) return false;
+
+  if (password.length < 8) return false;
+
+  if (!/[A-Z]/.test(password)) return false;
+
+  if (!/[a-z]/.test(password)) return false;
+
+  if (!/[0-9]/.test(password)) return false;
+
+  if (!/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(password)) return false;
+
   return true;
 }
 
 function validateEmail(email) {
-  if (!email) {
-    return false;
-  }
+  if (!email) return false;
+
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRegex.test(email)) {
-    return false;
-  }
+  if (!emailRegex.test(email)) return false;
+
   return true;
 }
 
