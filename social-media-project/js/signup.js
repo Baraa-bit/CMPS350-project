@@ -1,5 +1,21 @@
-import { getUsers } from "./auth";
 import { nanoId } from "nanoid";
+
+async function loadJsonToStorage() {
+  try {
+    const response = await fetch("../json/user.json");
+    const data = await response.json();
+    localStorage.setItem("users", JSON.stringify(data));
+    console.log("Data successfully moved from JSON file to LocalStorage!");
+  } catch (error) {
+    console.error("Could not load the JSON file:", error);
+  }
+}
+
+async function getUsers() {
+  await loadJsonToStorage();
+  const data = JSON.parse(localStorage.getItem("users"));
+  return data;
+}
 
 function generateUserId() {
   return nanoId(8); // Generates a unique ID with 8 characters
@@ -37,7 +53,7 @@ function validateEmail(email) {
   return true;
 }
 
-function checkDublicateEmail(email) {
+function checkDublicateEmail(email, users) {
   return !users.some((user) => user.email === email);
 }
 
@@ -78,7 +94,7 @@ document.addEventListener("DOMContentLoaded", async (_) => {
     }
 
     const checkEmailFormat = validateEmail(email);
-    const dublicateEmail = checkDublicateEmail(email);
+    const dublicateEmail = checkDublicateEmail(email, users);
     const checkPass = validatePassword(password);
 
     if (!checkEmailFormat) {

@@ -1,18 +1,15 @@
 async function loadJsonToStorage() {
   try {
     const response = await fetch("../json/user.json");
-
     const data = await response.json();
-
     localStorage.setItem("users", JSON.stringify(data));
-
     console.log("Data successfully moved from JSON file to LocalStorage!");
   } catch (error) {
     console.error("Could not load the JSON file:", error);
   }
 }
 
-export async function getUsers() {
+async function getUsers() {
   await loadJsonToStorage();
   const data = JSON.parse(localStorage.getItem("users"));
   return data;
