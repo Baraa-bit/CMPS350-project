@@ -72,6 +72,12 @@ html {
   align-items: center;
   gap: 1rem;
 }
+#invalid,
+#incomplete {
+  font-size: 1rem;
+  color: red;
+  display: none;
+}
 
 .input-field {
   width: 100%;

@@ -45,16 +45,20 @@ document.addEventListener("DOMContentLoaded", () => {
     const password = passwordInput.value.trim();
 
     if (!email || !password) {
-      alert("Please enter both email and password");
+      const incompleteLogin = document.querySelector("#incomplete");
+      incompleteLogin.style.display = "block";
       return;
     }
     const loggedInUser = validateLogin(email, password);
 
     if (loggedInUser) {
       localStorage.setItem("currentUser", JSON.stringify(loggedInUser));
-      alert(`Welcome, ${loggedInUser.name}!`);
+      window.location.href = "../html/profile.html";
     } else {
-      alert("Invalid email or password");
+      const failedLogin = document.querySelector("#invalid");
+      failedLogin.style.display = "block";
+      const incompleteLogin = document.querySelector("#incomplete");
+      incompleteLogin.style.display = "none";
       passwordInput.value = "";
     }
   });
