@@ -14,7 +14,7 @@ async function loadJsonToStorage() {
 
 export async function getUsers() {
   await loadJsonToStorage();
-  const data = await JSON.parse(localStorage.getItem("users"));
+  const data = JSON.parse(localStorage.getItem("users"));
   return data;
 }
 
