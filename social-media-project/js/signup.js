@@ -1,7 +1,9 @@
 import { getUsers } from "./auth";
+import { nanoId } from "nanoid";
 
-const users = await getUsers();
-
+function generateUserId() {
+  return nanoId(8); // Generates a unique ID with 8 characters
+}
 function validatePassword(password) {
   if (!password) {
     return false;
@@ -36,24 +38,25 @@ function validateEmail(email) {
 }
 
 function checkDublicateEmail(email) {
-  if (!users.include(email)) {
-    return true;
-  }
-  return false;
+  return !users.some((user) => user.email === email);
 }
 
-document.addEventListener("DOMContentLoaded", (_) => {
+document.addEventListener("DOMContentLoaded", async (_) => {
+  const users = await getUsers();
+
   const nameInput = document.querySelector("#name-input");
   const birthDateInput = document.querySelector("#date-input");
-  const genderInput = document.querySelector("#gender-form");
+  const genderRadio = document.querySelectorAll("input[name='gender']");
   const emailInput = document.querySelector("#email-input");
   const passwordInput = document.querySelector("#password-input");
   const submitButton = document.querySelector("#signup-button");
 
-  submitButton.addEventListener("click", (_) => {
+  submitButton.addEventListener("click", async (_) => {
     const name = nameInput.value.trim();
     const birthDate = birthDateInput.value;
-    const gender = genderInput.value;
+    const gender = Array.from(genderRadio).find(
+      (radio) => radio.checked,
+    )?.value;
     const email = emailInput.value.trim();
     const password = passwordInput.value.trim();
 
@@ -62,5 +65,60 @@ document.addEventListener("DOMContentLoaded", (_) => {
       incompleteSignup.style.display = "block";
       return;
     }
+
+    const checkEmailFormat = validateEmail(email);
+    const dublicateEmail = checkDublicateEmail(email);
+    const checkPass = validatePassword(password);
+
+    if (!checkEmailFormat) {
+      const incompleteSignup = document.querySelector("#incomplete-signup");
+      incompleteSignup.style.display = "none";
+      const dublicatedEmail = document.querySelector("#dublicate-email");
+      dublicatedEmail.style.display = "none";
+      const wrongEmailFormat = document.querySelector("#wrong-email-Format");
+      wrongEmailFormat.style.display = "block";
+      return;
+    }
+
+    if (!dublicateEmail) {
+      const incompleteSignup = document.querySelector("#incomplete-signup");
+      incompleteSignup.style.display = "none";
+      const wrongEmailFormat = document.querySelector("#wrong-email-Format");
+      wrongEmailFormat.style.display = "none";
+      const dublicatedEmail = document.querySelector("#dublicate-email");
+      dublicatedEmail.style.display = "block";
+      return;
+    }
+
+    if (!checkPass) {
+      const incompleteSignup = document.querySelector("#incomplete-signup");
+      incompleteSignup.style.display = "none";
+      const invlidPassword = document.querySelector("#validate-password");
+      invlidPassword.style.display = "block";
+      if (dublicateEmail && checkEmailFormat) {
+        const wrongEmailFormat = document.querySelector("#wrong-email-Format");
+        wrongEmailFormat.style.display = "none";
+        const dublicatedEmail = document.querySelector("#dublicate-email");
+        dublicatedEmail.style.display = "none";
+      }
+      return;
+    }
+    const newUser = {
+      id: generateUserId(),
+      name: name,
+      email: email,
+      password: password,
+      profilePicture: "assets/images/default-avatar.jpg",
+      birthdate: birthDate,
+      gender: gender,
+      bio: "",
+      following: [],
+      followers: [],
+    };
+    users.push(newUser);
+    localStorage.setItem("users", JSON.stringify(users));
+    sessionStorage.setItem("currentUser", JSON.stringify(newUser));
+
+    window.location.href = "./index.html";
   });
 });

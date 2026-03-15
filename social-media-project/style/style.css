@@ -155,7 +155,9 @@ button {
 }
 
 #dublicate-email,
-#incomplete-signup {
+#incomplete-signup,
+#validate-password,
+#wrong-email-Format {
   font-size: 1rem;
   color: red;
   display: none;
