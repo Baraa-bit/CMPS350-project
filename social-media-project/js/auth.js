@@ -18,8 +18,8 @@ async function getUsers() {
   return data;
 }
 
-function validateLogin(email, password) {
-  const users = JSON.parse(localStorage.getItem("users"));
+async function validateLogin(email, password) {
+  const users = await getUsers();
   if (!users) {
     console.error("no users data found");
     return null;
@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const passwordInput = document.querySelector("#password-login-input");
   const loginButton = document.querySelector("#login-button");
 
-  loginButton.addEventListener("click", (_) => {
+  loginButton.addEventListener("click", async (_) => {
     const email = emailInput.value.trim();
     const password = passwordInput.value.trim();
 
@@ -49,10 +49,15 @@ document.addEventListener("DOMContentLoaded", () => {
       incompleteLogin.style.display = "block";
       return;
     }
-    const loggedInUser = validateLogin(email, password);
+    const loggedInUser = await validateLogin(email, password);
 
     if (loggedInUser) {
-      localStorage.setItem("currentUser", JSON.stringify(loggedInUser));
+      const failedLogin = document.querySelector("#invalid");
+      failedLogin.style.display = "none";
+      const incompleteLogin = document.querySelector("#incomplete");
+      incompleteLogin.style.display = "none";
+
+      sessionStorage.setItem("currentUser", JSON.stringify(loggedInUser));
       window.location.href = "../html/profile.html";
     } else {
       const failedLogin = document.querySelector("#invalid");
