@@ -22,6 +22,7 @@ async function getUsers() {
 function generateUserId() {
   return nanoid(8); // Generates a unique ID with 8 characters
 }
+
 function validatePassword(password) {
   if (!password) return false;
 
