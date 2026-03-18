@@ -3,13 +3,34 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="../style/style.css">
+    <title>Tawasl - News Feed</title>
+    <link rel="stylesheet" href="../style/style.css" />
+    <link rel="stylesheet" href="../style/feed-post.css" />
+    <style>
+      /* Fix for the white boxes around nav links */
+      #main-nav li { background-color: transparent; }
+    </style>
   </head>
   <body>
     <header id="page-header-with-logo">
       <span id="logo">T</span>
+      <nav id="main-nav">
+        <ul>
+          <li><a href="feed.html" class="active">News Feed</a></li>
+          <li><a href="profile.html">Profile</a></li>
+        </ul>
+      </nav>
+      <button id="logout-btn" type="button">Logout</button>
     </header>
+    <main id="feed-main" data-ui="v1">
+      <section id="create-post">
+        <form id="create-post-form">
+          <textarea id="post-input" placeholder="What's on your mind?" required></textarea>
+          <button type="submit" id="submit-post-btn">Post</button>
+        </form>
+      </section>
+      <section id="posts-stream"></section>
+    </main>
     <footer>
       <p>
         Tawasl is a simple social platform project created to help people
@@ -42,7 +63,8 @@
         <p>Phone: +974 5555 1234</p>
         <p>Doha, Qatar</p>
       </div>
-      <p id="copyrights">© 2026 Tawasl. Connecting people everywhere.</p>
+      <p id="copyrights">&copy; 2026 Tawasl. Connecting people everywhere.</p>
     </footer>
+    <script src="../js/feed.js"></script>
   </body>
 </html>
