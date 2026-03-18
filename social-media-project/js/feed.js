@@ -14,7 +14,7 @@ async function init() {
   renderPosts();
 }
 function renderPosts() {
-  let posts = JSON.parse(localStorage.getItem("posts")) || [];
+  const posts = JSON.parse(localStorage.getItem("posts")) || [];
   const stream = document.getElementById("posts-stream");
   stream.innerHTML = ""; 
   posts.forEach(post => {
@@ -40,8 +40,9 @@ function renderPosts() {
 }
 document.getElementById("create-post-form").onsubmit = (e) => {
   e.preventDefault();
+  // tmp
   const input = document.getElementById("post-input");
-  let posts = JSON.parse(localStorage.getItem("posts")) || [];
+  const posts = JSON.parse(localStorage.getItem("posts")) || [];
   posts.unshift({ 
     postId: "p_" + Date.now(),
     authorId: currentUser.name, 
