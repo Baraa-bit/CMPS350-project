@@ -23,7 +23,7 @@ function renderPosts() {
       <p><b>${c.authorId}:</b> ${c.content} 
       ${c.authorId === currentUser.name ? `<button class="delete-comment-btn" data-index="${i}">x</button>` : ""}</p>
     `).join("");
-    stream.innerHTML += `
+    stream.innerHTML  += `
       <article class="post" data-id="${post.postId}">
         <div class="post-header">
           <strong>${post.authorId}</strong> <span>${post.timestamp}</span>
@@ -40,7 +40,6 @@ function renderPosts() {
 }
 document.getElementById("create-post-form").onsubmit = (e) => {
   e.preventDefault();
-  // tmp
   const input = document.getElementById("post-input");
   const posts = JSON.parse(localStorage.getItem("posts")) || [];
   posts.unshift({ 
