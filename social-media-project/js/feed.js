@@ -1,4 +1,4 @@
-let currentUser =  JSON.parse(sessionStorage.getItem("currentUser"));
+let currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
 if (!currentUser) {
   currentUser = { name: "TestUser" }; 
 }
@@ -14,7 +14,7 @@ async function init() {
   renderPosts();
 }
 function renderPosts() {
-  const posts =  JSON.parse(localStorage.getItem("posts")) || [];
+  const posts = JSON.parse(localStorage.getItem("posts")) || [];
   const stream = document.getElementById("posts-stream");
   stream.innerHTML = ""; 
   posts.forEach(post => {
@@ -40,8 +40,8 @@ function renderPosts() {
 }
 document.getElementById("create-post-form").onsubmit = (e) => {
   e.preventDefault();
-  const input = document.getElementById("post-input");
-  const posts =  JSON.parse(localStorage.getItem("posts")) || [];
+  let input = document.getElementById("post-input");
+  const posts = JSON.parse(localStorage.getItem("posts")) || [];
   posts.unshift({ 
     postId: "p_" + Date.now(),
     authorId: currentUser.name, 
@@ -58,13 +58,13 @@ document.getElementById("posts-stream").onclick = (e) => {
   if (!postEl) return;
   const postId = postEl.dataset.id;
   if (e.target.className === "delete-btn") {
-    let posts =  JSON.parse(localStorage.getItem("posts"));
+    let posts = JSON.parse(localStorage.getItem("posts"));
     posts = posts.filter(p => p.postId !== postId);
     localStorage.setItem("posts", JSON.stringify(posts));
     renderPosts();
   } 
   else if (e.target.className === "delete-comment-btn") {
-    let posts =  JSON.parse(localStorage.getItem("posts"));
+    let posts = JSON.parse(localStorage.getItem("posts"));
     const post = posts.find(p => p.postId === postId);
     post.comments.splice(e.target.dataset.index, 1);
     localStorage.setItem("posts", JSON.stringify(posts));
