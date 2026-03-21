@@ -464,3 +464,52 @@ footer h4 {
     background-color: transparent;
   }
 }
+
+/* Mobile-First Feed Header */
+#page-header-with-logo {
+  display: flex;
+  flex-direction: column; /* Stack on phones */
+  align-items: center;
+  gap: 15px;
+  padding: 15px;
+  background-color: var(--dark-blue);
+  text-align: center;
+}
+
+#page-header-with-logo #logo {
+  height: 40px; width: 40px; font-size: 1.2rem; margin: 0;
+}
+
+#main-nav { background-color: transparent; width: 100%; }
+#main-nav ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap; /* Prevent squishing on tiny screens */
+  justify-content: center;
+  gap: 1rem;
+  padding: 0; margin: 0;
+  background-color: transparent;
+}
+#main-nav a { 
+  text-decoration: none; color: var(--white); 
+  background: transparent; font-weight: 500; font-size: 1.1em; 
+}
+#main-nav a:hover { color: #a5b4fc; }
+
+#logout-btn {
+  background: transparent; color: var(--white); font-weight: bold;
+  border: 1px solid var(--white); padding: 5px 20px; border-radius: 4px; cursor: pointer;
+  width: auto;
+}
+#logout-btn:hover { background: var(--white); color: var(--dark-blue); }
+
+/* Tablet & Desktop Layout */
+@media screen and (min-width: 600px) {
+  #page-header-with-logo {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px 20px;
+    gap: 0;
+  }
+  #main-nav { width: auto; }
+}
