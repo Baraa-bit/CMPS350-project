@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
       incompleteLogin.style.display = "none";
 
       sessionStorage.setItem("currentUser", JSON.stringify(loggedInUser));
-      window.location.href = "../html/profile.html";
+      window.location.href = "../html/feed.html";
     } else {
       const failedLogin = document.querySelector("#invalid");
       failedLogin.style.display = "block";

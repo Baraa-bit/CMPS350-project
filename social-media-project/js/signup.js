@@ -144,6 +144,6 @@ document.addEventListener("DOMContentLoaded", async (_) => {
     localStorage.setItem("users", JSON.stringify(users));
     sessionStorage.setItem("currentUser", JSON.stringify(newUser));
 
-    window.location.href = "./profile.html";
+    window.location.href = "./feed.html";
   });
 });
