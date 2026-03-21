@@ -18,29 +18,33 @@ async function init() {
   }
 }
 function renderPosts() {
-  const posts = JSON.parse(localStorage.getItem("posts")) || [];
-  const stream = document.getElementById("posts-stream");
-  stream.innerHTML = ""; 
-  posts.forEach(post => {
-    const postDeleteBtn = post.authorId === currentUser.name ? `<button class="delete-btn">Delete</button>` : "";
-    const commentsHtml = (post.comments || []).map((c, i) => `
-      <p><b>${c.authorId}:</b> ${c.content} 
-      ${c.authorId === currentUser.name ? `<button class="delete-comment-btn" data-index="${i}">x</button>` : ""}</p>
-    `).join("");
-    stream.innerHTML += `
-      <article class="post" data-id="${post.postId}">
-        <div class="post-header">
-          <strong>${post.authorId}</strong> <span>${post.timestamp}</span>
-        </div>
-        <p>${post.content}</p>
-        ${postDeleteBtn}
-        <button class="view-btn">Comments (${post.comments?.length || 0})</button>
-        <div class="comments" style="display:none;">
-          ${commentsHtml}
-        </div>
-      </article>
-    `;
-  });
+  try {
+    const posts = JSON.parse(localStorage.getItem("posts")) || [];
+    const stream = document.getElementById("posts-stream");
+    stream.innerHTML = ""; 
+    posts.forEach(post => {
+      const postDeleteBtn = post.authorId === currentUser.name ? `<button class="delete-btn">Delete</button>` : "";
+      const commentsHtml = (post.comments || []).map((c, i) => `
+        <p><b>${c.authorId}:</b> ${c.content} 
+        ${c.authorId === currentUser.name ? `<button class="delete-comment-btn" data-index="${i}">x</button>` : ""}</p>
+      `).join("");
+      stream.innerHTML += `
+        <article class="post" data-id="${post.postId}">
+          <div class="post-header">
+            <strong>${post.authorId}</strong> <span>${post.timestamp}</span>
+          </div>
+          <p>${post.content}</p>
+          ${postDeleteBtn}
+          <button class="view-btn">Comments (${post.comments?.length || 0})</button>
+          <div class="comments" style="display:none;">
+            ${commentsHtml}
+          </div>
+        </article>
+      `;
+    });
+  } catch (error) {
+    console.log(error);
+  }
 }
 document.getElementById("create-post-form").onsubmit = (e) => {
   e.preventDefault();
