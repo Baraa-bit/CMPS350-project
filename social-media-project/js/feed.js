@@ -7,11 +7,15 @@ document.getElementById("logout-btn").onclick = () => {
   window.location.href = "index.html";
 };
 async function init() {
-  if (!localStorage.getItem("posts")) {
-    const res = await fetch("../json/post.json");
-    localStorage.setItem("posts", JSON.stringify(await res.json()));
+  try {
+    if (!localStorage.getItem("posts")) {
+      const res = await fetch("../json/post.json");
+      localStorage.setItem("posts", JSON.stringify(await res.json()));
+    }
+    renderPosts();
+  } catch (error) {
+    console.log(error);
   }
-  renderPosts();
 }
 function renderPosts() {
   const posts = JSON.parse(localStorage.getItem("posts")) || [];

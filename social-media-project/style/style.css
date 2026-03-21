@@ -306,11 +306,7 @@ footer h4 {
   font-size: 0.9rem;
 }
 
-/* ///////////////////////////////////////////////////
-///////////////////////////////////////////////////
-///////////////////////////////////////////////////
-///////////////////////////////////////////////////
-/////////////////////////////////////////////////// */
+
 
 @media screen and (min-width: 481px) {
   #signUp-main {
@@ -359,11 +355,7 @@ footer h4 {
     flex-direction: column;
   }
 }
-/* ///////////////////////////////////////////////////
-///////////////////////////////////////////////////
-///////////////////////////////////////////////////
-///////////////////////////////////////////////////
-/////////////////////////////////////////////////// */
+
 
 @media screen and (min-width: 960px) {
   #page-header {
@@ -465,10 +457,10 @@ footer h4 {
   }
 }
 
-/* Mobile-First Feed Header */
+
 #page-header-with-logo {
   display: flex;
-  flex-direction: column; /* Stack on phones */
+  flex-direction: column; 
   align-items: center;
   gap: 15px;
   padding: 15px;
@@ -484,7 +476,7 @@ footer h4 {
 #main-nav ul {
   list-style: none;
   display: flex;
-  flex-wrap: wrap; /* Prevent squishing on tiny screens */
+  flex-wrap: wrap; 
   justify-content: center;
   gap: 1rem;
   padding: 0; margin: 0;
@@ -503,7 +495,7 @@ footer h4 {
 }
 #logout-btn:hover { background: var(--white); color: var(--dark-blue); }
 
-/* Tablet & Desktop Layout */
+
 @media screen and (min-width: 600px) {
   #page-header-with-logo {
     flex-direction: row;
