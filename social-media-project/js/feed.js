@@ -47,40 +47,48 @@ function renderPosts() {
   }
 }
 document.getElementById("create-post-form").onsubmit = (e) => {
-  e.preventDefault();
-  const input = document.getElementById("post-input");
-  const posts = JSON.parse(localStorage.getItem("posts")) || [];
-  posts.unshift({ 
-    postId: "p_" + Date.now(),
-    authorId: currentUser.name, 
-    content: input.value,
-    timestamp: new Date().toISOString().split("T")[0],
-    comments: []
-  });
-  localStorage.setItem("posts", JSON.stringify(posts));
-  input.value = ""; 
-  renderPosts();
+  try {
+    e.preventDefault();
+    const input = document.getElementById("post-input");
+    const posts = JSON.parse(localStorage.getItem("posts")) || [];
+    posts.unshift({ 
+      postId: "p_" + Date.now(),
+      authorId: currentUser.name, 
+      content: input.value,
+      timestamp: new Date().toISOString().split("T")[0],
+      comments: []
+    });
+    localStorage.setItem("posts", JSON.stringify(posts));
+    input.value = ""; 
+    renderPosts();
+  } catch (error) {
+    console.log(error);
+  }
 };
 document.getElementById("posts-stream").onclick = (e) => {
-  const postEl = e.target.closest(".post");
-  if (!postEl) return;
-  const postId = postEl.dataset.id;
-  if (e.target.className === "delete-btn") {
-    let posts = JSON.parse(localStorage.getItem("posts"));
-    posts = posts.filter(p => p.postId !== postId);
-    localStorage.setItem("posts", JSON.stringify(posts));
-    renderPosts();
-  } 
-  else if (e.target.className === "delete-comment-btn") {
-    let posts = JSON.parse(localStorage.getItem("posts"));
-    const post = posts.find(p => p.postId === postId);
-    post.comments.splice(e.target.dataset.index, 1);
-    localStorage.setItem("posts", JSON.stringify(posts));
-    renderPosts();
-  }
-  else if (e.target.className === "view-btn") {
-    const commentsDiv = postEl.querySelector(".comments");
-    commentsDiv.style.display = commentsDiv.style.display === "none" ? "block" : "none";
+  try {
+    const postEl = e.target.closest(".post");
+    if (!postEl) return;
+    const postId = postEl.dataset.id;
+    if (e.target.className === "delete-btn") {
+      let posts = JSON.parse(localStorage.getItem("posts"));
+      posts = posts.filter(p => p.postId !== postId);
+      localStorage.setItem("posts", JSON.stringify(posts));
+      renderPosts();
+    } 
+    else if (e.target.className === "delete-comment-btn") {
+      let posts = JSON.parse(localStorage.getItem("posts"));
+      const post = posts.find(p => p.postId === postId);
+      post.comments.splice(e.target.dataset.index, 1);
+      localStorage.setItem("posts", JSON.stringify(posts));
+      renderPosts();
+    }
+    else if (e.target.className === "view-btn") {
+      const commentsDiv = postEl.querySelector(".comments");
+      commentsDiv.style.display = commentsDiv.style.display === "none" ? "block" : "none";
+    }
+  } catch (error) {
+    console.log(error);
   }
 };
 init();
