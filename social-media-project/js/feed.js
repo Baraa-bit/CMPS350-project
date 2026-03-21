@@ -40,7 +40,7 @@ function renderPosts() {
 }
 document.getElementById("create-post-form").onsubmit = (e) => {
   e.preventDefault();
-  let input = document.getElementById("post-input");
+  const input = document.getElementById("post-input");
   const posts = JSON.parse(localStorage.getItem("posts")) || [];
   posts.unshift({ 
     postId: "p_" + Date.now(),
