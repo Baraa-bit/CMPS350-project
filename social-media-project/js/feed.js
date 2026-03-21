@@ -2,6 +2,9 @@ let currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
 if (!currentUser) {
   currentUser = { name: "TestUser" }; 
 }
+const stream = document.getElementById("posts-stream");
+const postForm = document.getElementById("create-post-form");
+
 document.getElementById("logout-btn").onclick = () => {
   sessionStorage.removeItem("currentUser");
   window.location.href = "index.html";
@@ -20,15 +23,14 @@ async function init() {
 function renderPosts() {
   try {
     const posts = JSON.parse(localStorage.getItem("posts")) || [];
-    const stream = document.getElementById("posts-stream");
-    stream.innerHTML = ""; 
-    posts.forEach(post => {
+    stream.innerHTML = posts.map(post => {
       const postDeleteBtn = post.authorId === currentUser.name ? `<button class="delete-btn">Delete</button>` : "";
       const commentsHtml = (post.comments || []).map((c, i) => `
         <p><b>${c.authorId}:</b> ${c.content} 
         ${c.authorId === currentUser.name ? `<button class="delete-comment-btn" data-index="${i}">x</button>` : ""}</p>
       `).join("");
-      stream.innerHTML += `
+      
+      return `
         <article class="post" data-id="${post.postId}">
           <div class="post-header">
             <strong>${post.authorId}</strong> <span>${post.timestamp}</span>
@@ -36,17 +38,17 @@ function renderPosts() {
           <p>${post.content}</p>
           ${postDeleteBtn}
           <button class="view-btn">Comments (${post.comments?.length || 0})</button>
-          <div class="comments" style="display:none;">
+          <div class="comments hidden">
             ${commentsHtml}
           </div>
         </article>
       `;
-    });
+    }).join("");
   } catch (error) {
     console.log(error);
   }
 }
-document.getElementById("create-post-form").onsubmit = (e) => {
+postForm.onsubmit = (e) => {
   try {
     e.preventDefault();
     const input = document.getElementById("post-input");
@@ -65,27 +67,26 @@ document.getElementById("create-post-form").onsubmit = (e) => {
     console.log(error);
   }
 };
-document.getElementById("posts-stream").onclick = (e) => {
+stream.onclick = (e) => {
   try {
     const postEl = e.target.closest(".post");
     if (!postEl) return;
     const postId = postEl.dataset.id;
-    if (e.target.className === "delete-btn") {
+    if (e.target.classList.contains("delete-btn")) {
       let posts = JSON.parse(localStorage.getItem("posts"));
       posts = posts.filter(p => p.postId !== postId);
       localStorage.setItem("posts", JSON.stringify(posts));
       renderPosts();
     } 
-    else if (e.target.className === "delete-comment-btn") {
+    else if (e.target.classList.contains("delete-comment-btn")) {
       let posts = JSON.parse(localStorage.getItem("posts"));
       const post = posts.find(p => p.postId === postId);
       post.comments.splice(e.target.dataset.index, 1);
       localStorage.setItem("posts", JSON.stringify(posts));
       renderPosts();
     }
-    else if (e.target.className === "view-btn") {
-      const commentsDiv = postEl.querySelector(".comments");
-      commentsDiv.style.display = commentsDiv.style.display === "none" ? "block" : "none";
+    else if (e.target.classList.contains("view-btn")) {
+      postEl.querySelector(".comments").classList.toggle("hidden");
     }
   } catch (error) {
     console.log(error);

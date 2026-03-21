@@ -505,3 +505,4 @@ footer h4 {
   }
   #main-nav { width: auto; }
 }
+.hidden { display: none !important; }
