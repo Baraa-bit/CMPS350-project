@@ -19,7 +19,7 @@
   border-bottom: 1px solid var(--border-gray); padding-bottom: 8px; margin-bottom: 12px;
   display: flex; justify-content: space-between; align-items: center;
 }
-.post-header strong { color: var(--dark-blue); font-size: 1.05em; }
+.post-header strong { color: var(--dark-blue); font-size: 1.1em; }
 .post-header span { color: var(--text-gray); font-size: 0.85em; }
 .post p { margin: 10px 0; color: #333; line-height: 1.5; font-size: 0.95em; }
 .delete-btn, .view-btn {
