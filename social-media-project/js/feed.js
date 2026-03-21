@@ -55,7 +55,7 @@ document.getElementById("create-post-form").onsubmit = (e) => {
       postId: "p_" + Date.now(),
       authorId: currentUser.name, 
       content: input.value,
-      timestamp: new Date().toISOString().split("T")[0],
+      timestamp: new Date().toLocaleDateString('en-CA'),
       comments: []
     });
     localStorage.setItem("posts", JSON.stringify(posts));
