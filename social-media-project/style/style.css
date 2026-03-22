@@ -472,7 +472,6 @@ footer h4 {
   height: 40px; width: 40px; font-size: 1.2rem; margin: 0;
 }
 
-#main-nav { background-color: transparent; width: 100%; }
 #main-nav ul {
   list-style: none;
   display: flex;
@@ -500,8 +499,8 @@ footer h4 {
   #page-header-with-logo {
     flex-direction: row;
     justify-content: space-between;
-    padding: 10px 20px;
-    gap: 0;
+    padding: 10px.20px;
+    gap:0;
   }
   #main-nav { width: auto; }
 }
