@@ -25,9 +25,17 @@ function renderPosts() {
     const posts = JSON.parse(localStorage.getItem("posts")) || [];
     stream.innerHTML = posts.map(post => {
       const postDeleteBtn = post.authorId === currentUser.name ? `<button class="delete-btn">Delete</button>` : "";
+      const postLikes = post.likes || 0;
+      const isPostLiked = post.likedBy?.includes(currentUser.name);
+      
       const commentsHtml = (post.comments || []).map((c, i) => `
         <p><b>${c.authorId}:</b> ${c.content} 
-        ${c.authorId === currentUser.name ? `<button class="delete-comment-btn" data-index="${i}">x</button>` : ""}</p>
+        ${c.authorId === currentUser.name ? `<button class="delete-comment-btn" data-index="${i}">x</button>` : ""}
+        <button class="like-comment-btn" data-index="${i}" style="color: ${c.likedBy?.includes(currentUser.name) ? 'red' : 'gray'}">
+          ♥ ${c.likes || 0}
+        </button>
+        <span class="like-details">${c.likedBy?.length > 0 ? `(${c.likedBy.join(", ")})` : ""}</span>
+        </p>
       `).join("");
       
       return `
@@ -37,8 +45,12 @@ function renderPosts() {
           </div>
           <p>${post.content}</p>
           ${postDeleteBtn}
+          <button class="like-post-btn" style="color: ${isPostLiked ? 'red' : 'gray'}">♥ ${postLikes}</button>
+          <span class="like-details">${post.likedBy?.length > 0 ? `(${post.likedBy.join(", ")})` : ""}</span>
           <button class="view-btn">Comments (${post.comments?.length || 0})</button>
           <div class="comments hidden">
+            <input type="text" class="comment-input" placeholder="Add a comment...">
+            <button class="add-comment-btn">Post</button>
             ${commentsHtml}
           </div>
         </article>
@@ -48,6 +60,64 @@ function renderPosts() {
     console.log(error);
   }
 }
+
+stream.addEventListener("click", (e) => {
+  if (e.target.classList.contains("add-comment-btn")) {
+    const postEl = e.target.closest(".post");
+    const postId = postEl.dataset.id;
+    const commentInput = postEl.querySelector(".comment-input");
+    const commentText = commentInput.value.trim();
+    
+    if (commentText) {
+      let posts = JSON.parse(localStorage.getItem("posts"));
+      const post = posts.find(p => p.postId === postId);
+      post.comments.push({
+        commentId: "c_" + Date.now(),
+        authorId: currentUser.name,
+        content: commentText,
+        likes: 0,
+        likedBy: []
+      });
+      localStorage.setItem("posts", JSON.stringify(posts));
+      commentInput.value = "";
+      renderPosts();
+    }
+  } else if (e.target.classList.contains("like-post-btn")) {
+    const postEl = e.target.closest(".post");
+    const postId = postEl.dataset.id;
+    let posts = JSON.parse(localStorage.getItem("posts"));
+    const post = posts.find(p => p.postId === postId);
+    post.likedBy = post.likedBy || [];
+    
+    const userIndex = post.likedBy.indexOf(currentUser.name);
+    if (userIndex > -1) {
+      post.likedBy.splice(userIndex, 1);
+    } else {
+      post.likedBy.push(currentUser.name);
+    }
+    post.likes = post.likedBy.length;
+    localStorage.setItem("posts", JSON.stringify(posts));
+    renderPosts();
+  } else if (e.target.classList.contains("like-comment-btn")) {
+    const postEl = e.target.closest(".post");
+    const postId = postEl.dataset.id;
+    const commentIndex = e.target.dataset.index;
+    let posts = JSON.parse(localStorage.getItem("posts"));
+    const post = posts.find(p => p.postId === postId);
+    const comment = post.comments[commentIndex];
+    comment.likedBy = comment.likedBy || [];
+    
+    const userIndex = comment.likedBy.indexOf(currentUser.name);
+    if (userIndex > -1) {
+      comment.likedBy.splice(userIndex, 1);
+    } else {
+      comment.likedBy.push(currentUser.name);
+    }
+    comment.likes = comment.likedBy.length;
+    localStorage.setItem("posts", JSON.stringify(posts));
+    renderPosts();
+  }
+});
 postForm.onsubmit = (e) => {
   try {
     e.preventDefault();
