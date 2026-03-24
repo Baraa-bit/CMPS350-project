@@ -4,109 +4,59 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Profile</title>
+   
+    <link rel="stylesheet" href="../style/profile-style.css" />
     <link rel="stylesheet" href="../style/style.css" />
-    <link rel="stylesheet" href="../style/header-style.css" />
-
+    
   </head>
   <body>
-    <header id="page-header-with-logo">
-      <span id="logo">T</span>
-      <div id="search">
-        <img src="../assets/Icons/Search.svg" />
-        <input type="text" placeholder="Search" />
-      </div>
-      <nav>
-        <a href="/"><img src="../assets/Icons/Home-fill.svg" /></a>
-        <a href="/"><img src="../assets/Icons/Messenger.svg" /></a>
-        <a href="/"><img src="../assets/Icons/NewPosts.svg" /></a>
-        <a href="/"><img src="../assets/Icons/FindPeople-Fiil.svg" /></a>
-        <a href="/"><img src="../assets/Icons/Lİke.svg" /></a>
-        <a href="/"><img src="../assets/Icons/Profile.svg" /></a>
-      </nav>
-    </header>
+    
 
     <main>
-      <section>
-        <div id="imageProfile">
-          <img src="../assets/profiles/default-avatar.jpg" alt="imageProfile">
+      <body>
+      
+      <section id ="headerProfile">
+        <div id="imageProfile-Section">
+          <img 
+          id="imageProfile"
+          src="../assets/profiles/default-avatar.jpg" alt="imageProfile">
         </div>
 
         <div id="InfoProfile">
-          <h1>yusufselim</h1>
-          <button id="follow-button">
-            Follow
-          </button>
+          <div id="Top-row-profile">
+            <h2>UsernameProfile</h2>
+            <button id="follow-button">Follow</button>
+            <button id="Edit-Profile button">EditProfile</button>
+          </div>
+
+          <div id="StatusProfile">
+          <p><strong>0</strong> posts</p>
+          <p><strong>0</strong> followers</p>
+          <p><strong>0</strong> following</p>
         </div>
 
-        <div id="StatusProfile">
-          <p><strong>144</strong>posts</p>
-          <p><strong>1429</strong>followers</p>
-          <p><strong>1558</strong>following</p>
-        </div>
-
-        <div id="Nameprofile">
-          <h3>Yusuf Selim</h3>
-        </div>
-      </section>
-
-      <section>
-        <div class= "highlights"> 
-          <img src="" alt="">
-          <p>Qatar</p>
-        </div>
-
-        <div class= "highlights"> 
-          <img src="" alt="">
-          <p>Turkey</p>
-        </div>
-
-        <div class= "highlights"> 
-          <img src="" alt="">
-          <p>Maldives</p>
-        </div>
-
-        <div class= "highlights"> 
-          <img src="" alt="">
-          <p>Singapore</p>
-        </div>
-
-      </section>
-
-      <section>
-       <div class ="tab">POSTS</div> 
-       <div class ="tab">GUIDES</div> 
-       <div class ="tab">REELS</div> 
-       <div class ="tab">VIDEOS</div> 
-       <div class ="tab">TAGGED</div> 
-
-      </section>
-
-      <section>
-        <div class="post-item">
-          <img src="" alt="">
+        <div id="BioProfile-Section">
+            <h3 id="NameProfile"></h3>
+            <p id="BioProfile"></p>
         </div>
         
-        <div class="post-item">
-          <img src="" alt="">
         </div>
-        
-        <div class="post-item">
-          <img src="" alt="">
-        </div>
-        
-        <div class="post-item">
-          <img src="" alt="">
-        </div>
-        
-        <div class="post-item">
-          <img src="" alt="">
-        </div>
-        
-        <div class="post-item">
-          <img src="" alt="">
-        </div>
+
         
       </section>
+
+      <section id="EditProfile-Form-Section" class="hidden">
+        <h2>Edit Profile</h2>
+        <form id="Edit-Profile-Form">
+          <input type="text" id="edit-username" placeholder="Username" required />
+          <textarea id="edit-bio" placeholder="Write your bio"></textarea>
+          <input type="text" id="edit-image" placeholder="Profile image path" />
+          <button type="submit">Save Changes</button>
+        </form>
+      </section>
+      
+      <script src="../js/profile.js"></script>
+      </body>
     </main>
     <footer>
       <p>
