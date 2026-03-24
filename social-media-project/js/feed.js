@@ -156,17 +156,21 @@ stream.onclick = (e) => {
     if (!postEl) return;
     const postId = postEl.dataset.id;
     if (e.target.classList.contains("delete-btn")) {
-      let posts = JSON.parse(localStorage.getItem("posts"));
-      posts = posts.filter(p => p.postId !== postId);
-      localStorage.setItem("posts", JSON.stringify(posts));
-      renderPosts();
+      if (confirm("Are you sure you want to delete this post?")) {
+        let posts = JSON.parse(localStorage.getItem("posts"));
+        posts = posts.filter(p => p.postId !== postId);
+        localStorage.setItem("posts", JSON.stringify(posts));
+        renderPosts();
+      }
     } 
     else if (e.target.classList.contains("delete-comment-btn")) {
-      let posts = JSON.parse(localStorage.getItem("posts"));
-      const post = posts.find(p => p.postId === postId);
-      post.comments.splice(e.target.dataset.index, 1);
-      localStorage.setItem("posts", JSON.stringify(posts));
-      renderPosts();
+      if (confirm("Are you sure you want to delete this comment?")) {
+        let posts = JSON.parse(localStorage.getItem("posts"));
+        const post = posts.find(p => p.postId === postId);
+        post.comments.splice(e.target.dataset.index, 1);
+        localStorage.setItem("posts", JSON.stringify(posts));
+        renderPosts();
+      }
     }
     else if (e.target.classList.contains("view-btn")) {
       postEl.querySelector(".comments").classList.toggle("hidden");
