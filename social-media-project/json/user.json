@@ -1,26 +1,62 @@
 [
   {
-    "id": "u_001",
-    "name": "NeuralLink_Gamer",
-    "email": "player1@sync-stream.com",
-    "password": "hashed_or_plain_password",
-    "profilePicture": "assets/images/avatar1.png",
-    "birthdate":"2003-09-08",
-    "gender":"male",
-    "bio": "Hooked on the new Sync-Stream protocol. Always online.",
-    "following": ["u_002", "u_005"],
-    "followers": ["u_003"]
+    "id": "kL9xR2mP",
+    "name": "Alexander Rivera",
+    "email": "alex.rivera@outlook.com",
+    "password": "P@ssw0rd1",
+    "profilePicture": "../assets/profiles/default-avatar.jpg",
+    "birthdate": "1995-05-12",
+    "gender": "male",
+    "bio": "Digital architect and coffee enthusiast. Exploring the limits of Sync-Stream.",
+    "following": ["vT4nB7zQ", "mJ2wK9pL"],
+    "followers": ["sD5fG8hJ"]
   },
   {
-    "id": "u_002",
-    "name": "Cyber_Player2",
-    "email": "player2@domain.com",
-    "password": "hashed_or_plain_password",
-    "profilePicture": "assets/images/avatar2.png",
-    "birthdate":"2003-09-08",
-    "gender":"female",
-    "bio": "Leveling up daily.",
-    "following": [],
-    "followers": ["u_001"]
+    "id": "vT4nB7zQ",
+    "name": "Sarah Jenkins",
+    "email": "s.jenkins@gmail.com",
+    "password": "B3st_User!",
+    "profilePicture": "../assets/profiles/default-avatar.jpg",
+    "birthdate": "1998-11-22",
+    "gender": "female",
+    "bio": "Gaming is life. Catch me on the leaderboard.",
+    "following": ["kL9xR2mP"],
+    "followers": ["kL9xR2mP", "mJ2wK9pL"]
+  },
+  {
+    "id": "mJ2wK9pL",
+    "name": "Hiroshi Tanaka",
+    "email": "h.tanaka@protonmail.com",
+    "password": "H1ro#2026",
+    "profilePicture": "../assets/profiles/default-avatar.jpg",
+    "birthdate": "2001-03-15",
+    "gender": "male",
+    "bio": "Cybersecurity student and part-time streamer.",
+    "following": ["vT4nB7zQ"],
+    "followers": ["kL9xR2mP", "yR6tN3vX"]
+  },
+  {
+    "id": "sD5fG8hJ",
+    "name": "Elena Rodriguez",
+    "email": "elena.rod@icloud.com",
+    "password": "L3tMeIn!",
+    "profilePicture": "../assets/profiles/default-avatar.jpg",
+    "birthdate": "1992-08-30",
+    "gender": "female",
+    "bio": "Always looking for the next big adventure in the metaverse.",
+    "following": ["kL9xR2mP", "yR6tN3vX"],
+    "followers": []
+  },
+  {
+    "id": "yR6tN3vX",
+    "name": "Jordan Smith",
+    "email": "jsmith_99@yahoo.com",
+    "password": "Secur3!9",
+    "profilePicture": "../assets/profiles/default-avatar.jpg",
+    "birthdate": "1999-12-05",
+    "gender": "non-binary",
+    "bio": "Technophile. Collector of rare digital assets.",
+    "following": ["mJ2wK9pL"],
+    "followers": ["sD5fG8hJ"]
   }
 ]
