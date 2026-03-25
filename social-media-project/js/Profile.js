@@ -4,19 +4,41 @@ if (!currentUser) {
   window.location.href = "login.html";
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+async function seedIfNeeded() {
+  if (!localStorage.getItem("posts")) {
+    const res = await fetch("../json/post.json");
+    localStorage.setItem("posts", JSON.stringify(await res.json()));
+  }
+  if (!localStorage.getItem("users")) {
+    const res = await fetch("../json/users.json");
+    localStorage.setItem("users", JSON.stringify(await res.json()));
+  }
+}
+
+document.addEventListener("DOMContentLoaded", async () => {
+  await seedIfNeeded();
+
+  const allPosts = JSON.parse(localStorage.getItem("posts")) || [];
+  const userPosts = allPosts.filter((post) => post.authorId === currentUser.id);
+
+  const followersCount = currentUser.followers?.length || 0;
+  const followingCount = currentUser.following?.length || 0;
+
+  const statusParagraphs = document.querySelectorAll("#StatusProfile p");
+  statusParagraphs[0].innerHTML = `<strong>${userPosts.length}</strong> posts`;
+  statusParagraphs[1].innerHTML = `<strong>${followersCount}</strong> followers`;
+  statusParagraphs[2].innerHTML = `<strong>${followingCount}</strong> following`;
+
   const profileName = document.querySelector("#username-profile");
   const profileEmail = document.querySelector("#profile-email");
-  const profilePicture = document.querySelector("#imageProfile"); // Fix: was "#profile-picture"
+  const profilePicture = document.querySelector("#imageProfile");
   const profileBirthdate = document.querySelector("#profile-birthdate");
   const profileGender = document.querySelector("#profile-gender");
   const profileBio = document.querySelector("#profile-bio");
 
-  // Fix: JSON uses "name", not "username"
   profileName.textContent =
     currentUser.name || currentUser.username || "Unknown";
   profileEmail.textContent = currentUser.email;
-  // Fix: JSON uses "profilePicture", not "picture"
   profilePicture.src =
     currentUser.profilePicture || "../assets/profiles/default-avatar.jpg";
   profileBirthdate.textContent = currentUser.birthdate || "Not specified";
@@ -30,7 +52,6 @@ document.addEventListener("DOMContentLoaded", () => {
       .classList.remove("hidden");
     document.querySelector("#edit-username").value =
       currentUser.name || currentUser.username || "";
-    // Fix: fallback to empty string to avoid "undefined" in textarea
     document.querySelector("#edit-bio").value = currentUser.bio || "";
   });
 
@@ -41,18 +62,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const newBio = document.querySelector("#edit-bio").value.trim();
 
     if (newUsername) {
-      // Fix: update "name" to match JSON structure
       currentUser.name = newUsername;
       profileName.textContent = newUsername;
     }
-    // Fix: allow clearing bio (removed the "if (newBio)" guard so empty bio can be saved)
     currentUser.bio = newBio;
     profileBio.textContent = newBio || "No bio available";
 
-    // Update sessionStorage
     sessionStorage.setItem("currentUser", JSON.stringify(currentUser));
 
-    // Update localStorage
     const users = JSON.parse(localStorage.getItem("users")) || [];
     const userIndex = users.findIndex(
       (user) => user.email === currentUser.email,
@@ -65,6 +82,12 @@ document.addEventListener("DOMContentLoaded", () => {
       };
       localStorage.setItem("users", JSON.stringify(users));
     }
+
+    const updatedPosts = JSON.parse(localStorage.getItem("posts")) || [];
+    const updatedUserPosts = updatedPosts.filter(
+      (p) => p.authorId === currentUser.id,
+    );
+    statusParagraphs[0].innerHTML = `<strong>${updatedUserPosts.length}</strong> posts`;
 
     document.querySelector("#EditProfile-Form-Section").classList.add("hidden");
   });
