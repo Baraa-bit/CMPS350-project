@@ -68,25 +68,19 @@ main {
   border: 1px solid #1d4ed8;
   border-radius: 6px;
   padding: 10px 22px;
-  font-size: 16px;
+  font-size: 1.1rem;
   cursor: pointer;
+  margin-bottom: 0.5rem;
 }
-
-#Edit-Profile {
-  background-color: #1d4ed8;
-  color: black;
-  border: 1px solid #1d4ed8;
+#Edit-Profile-button {
+  background-color: var(--light-gray);
+  color: var(--secondary-blue);
+  font-weight: bold;
+  padding: 0.75rem;
+  border: solid var(--border-gray) 1px;
   border-radius: 6px;
-  padding: 10px 22px;
-  font-size: 28px;
+  font-size: 1.1rem;
   cursor: pointer;
-}
-
-#StatusProfile {
-  display: flex;
-  flex-direction: row;
-  gap: 40px;
-  margin-bottom: 20px;
 }
 
 #StatusProfile p {
@@ -105,12 +99,14 @@ main {
   border: 1px solid #d1d5db;
   border-radius: 10px;
   margin-bottom: 20px;
+  color: var(--dark-blue);
 }
 
 #Edit-Profile-Form {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  color: var(--dark-blue);
 }
 
 #Edit-Profile-Form input,
@@ -118,6 +114,8 @@ main {
 #Edit-Profile-Form button {
   padding: 10px;
   font-size: 16px;
+  color: var(--dark-blue);
+  border-radius: 10px;
 }
 
 .hidden {
@@ -163,9 +161,11 @@ main {
   flex: 1;
 }
 
-#Edit-Profile-button {
-  padding: 0.75rem;
-  border-radius: 10px;
+#profile-bio {
+  background-color: var(--light-gray);
+  padding: 0.5rem;
+  border-radius: 6px;
+  margin: 0 0.5rem;
 }
 
 /* Mobile */
@@ -178,6 +178,7 @@ main {
     flex-direction: column;
     text-align: center;
     gap: 20px;
+    color: var(--dark-blue);
   }
 
   #imageProfile-Section {
@@ -193,21 +194,32 @@ main {
     gap: 10px;
   }
 
-  #Top-row-profile h1 {
-    font-size: 28px;
+  #Top-row-profile h3 {
+    font-weight: normal;
   }
 
   #StatusProfile {
-    flex-direction: column;
-    gap: 10px;
+    background-color: var(--light-gray);
+    padding: 2rem 1.25rem;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
   }
 
   #imageProfile {
     width: 130px;
     height: 130px;
   }
-}
 
+  #profile-gender-div,
+  #profile-birthdate-div {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    font-size: 1.15rem;
+  }
+}
 /* Tablet View */
 @media screen and (min-width: 768px) and (max-width: 1023px) {
   main {
