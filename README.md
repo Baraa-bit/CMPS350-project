@@ -33,4 +33,14 @@ This is personal report for each member:
     13- Added the project README and instructions PDF to the repository.
     Total commits: 39 commits across HTML, CSS, JavaScript, and project documentation.
 
+
+    Mostafa Nageeb 202205968 (GitHub: mo_lf)
+    1- Implemented the likes and comments system for the news feed: users can add comments to posts, and like/unlike both posts and comments, with live like counts and liked-by name display.
+    2- Fixed a bug where comment deletion was not working correctly.
+    3- Improved feed UI styling: updated and refactored feed-post.css for a cleaner, more consistent post layout.
+    4- Made further feed logic improvements and refactoring in feed.js for better structure and readability.
+    5- Merged pull requests from team members and helped integrate UI feature fixes into the main branch.
+    6- Added the openComments state persistence feature: comment sections stay open after any re-render (liking, adding comments) preventing the UI from collapsing on every interaction.
+
+
 Good luck everyone!
