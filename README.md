@@ -16,3 +16,21 @@ This is personal report for each member:
     10- manage other team member and assgin tasks for each of them through whatapp.
     11- I was planing to only work on auth part and left the rest for my team but not all worked their part so i have to do the profile and follow part.
 Good luck everyone!
+
+    Hadi Sleiman 202104164 (GitHub: soul-less-king)
+    1- Built the complete News Feed page (feed.html) from scratch — structure, layout, and all dynamic sections.
+    2- Developed feed.js as the core logic for the news feed: loading posts from JSON, rendering them dynamically, handling post creation and deletion with confirmation dialogs.
+    3- Implemented name lookup in the feed so posts and comments show real user names instead of IDs.
+    4- Added feed filtering logic so users only see posts from people they follow and their own posts.
+    5- Moved all news feed styles to a dedicated external CSS file (feed-post.css) for cleaner separation of concerns.
+    6- Refactored and simplified feed logic across multiple iterations to improve readability, maintainability and performance.
+    7- Fixed a critical bug where the login button redirected to profile instead of the feed page.
+    8- Fixed a potential crash when a post's data file is missing, adding proper error handling throughout feed initialization, event handlers, and post rendering.
+    9- Resolved navigation visibility and background transparency issues that affected the UI on certain pages.
+    10- Added responsive and mobile-first styling for the feed header and navigation bar.
+    11- Made post dates display in a human-readable, natural format.
+    12- Contributed to auth.js and signup.js for minor login/signup flow fixes.
+    13- Added the project README and instructions PDF to the repository.
+    Total commits: 39 commits across HTML, CSS, JavaScript, and project documentation.
+
+Good luck everyone!
