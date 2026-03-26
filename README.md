@@ -3,19 +3,18 @@
 Welcome to our project!
 
 This is personal report for each member:
-    Berat Safra 202105200
-    1- I created the repo
-    2- Created the project and intialize everything includein the html,css,js and the json format for user and posts
-    3- created the html, css, js for auth(Login and sign up) completly and make sure everything is validated and the format for each field is correct.
-    4- made sure the login user is saved into sessionstorage so it can be used for pages
-    5- updated the html and css for profile to make sure the structure fit the json file(showing all user date)
-    6- create the js for profile pages, that include updating the profile, showing different loged in users, viewing other users.
-    7- added the follow and unfollow feature to the profile page.
-    8- made sure all my css styling followed mobile first view then tablet and desktop. used rem em for resposive layout
-    9- choose the color theme for the whole project
-    10- manage other team member and assgin tasks for each of them through whatapp.
-    11- I was planing to only work on auth part and left the rest for my team but not all worked their part so i have to do the profile and following part.
-
+Berat Safra 202105200
+1- I created the repo
+2- Created the project and intialize everything includein the html,css,js and the json format for user and posts
+3- created the html, css, js for auth(Login and sign up) completly and make sure everything is validated and the format for each field is correct.
+4- made sure the login user is saved into sessionstorage so it can be used for pages
+5- updated the html and css for profile to make sure the structure fit the json file(showing all user date)
+6- create the js for profile pages, that include updating the profile, showing different loged in users, viewing other users.
+7- added the follow and unfollow feature to the profile page.
+8- made sure all my css styling followed mobile first view then tablet and desktop. used rem em for resposive layout
+9- choose the color theme for the whole project
+10- manage other team member and assgin tasks for each of them through whatapp.
+11- I was planing to only work on auth part and left the rest for my team but not all worked their part so i have to do the profile and following part.
 
     Hadi Sleiman 202104164 (GitHub: soul-less-king)
     1- Built the complete News Feed page (feed.html) from scratch — structure, layout, and all dynamic sections.
@@ -42,5 +41,12 @@ This is personal report for each member:
     5- Merged pull requests from team members and helped integrate UI feature fixes into the main branch.
     6- Added the openComments state persistence feature: comment sections stay open after any re-render (adding comments) preventing the UI from collapsing on every interaction.
 
+    Yusuf Selim 202005340
+    1- Built the complete Profile page functionality from scratch — displaying user information, posts, followers, and following counts dynamically.
+    2- Implemented user authentication and session validation on the profile page to ensure only logged-in users can access it.
+    3- Developed Profile.js core logic for managing both own profile view and viewing other users' profiles using URL parameters.
+    4- Implemented profile information display (name, email, bio, gender, birthdate, profile picture) with fallback values for missing data.
+    6- Implemented the follow/unfollow functionality on user profiles with real-time follower count updates and button state management.
+    7- Added localStorage persistence for user and post data synchronization across the profile and other pages.
 
 Good luck everyone!
