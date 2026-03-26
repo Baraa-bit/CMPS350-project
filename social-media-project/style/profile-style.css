@@ -18,8 +18,8 @@ main {
   width: 80%;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 2.5rem;
-  margin-bottom: 2.5rem;
+  margin-top: 5rem;
+  margin-bottom: 5rem;
 }
 
 #headerProfile {
@@ -200,7 +200,7 @@ main {
 
   #StatusProfile {
     background-color: var(--light-gray);
-    padding: 2rem 1.25rem;
+    padding: 1.1rem 1.25rem;
     border-radius: 10px;
     display: flex;
     flex-direction: row;
@@ -231,7 +231,7 @@ main {
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    gap: 30px;
+    gap: 2.5rem;
   }
 
   #imageProfile-Section {
@@ -251,37 +251,44 @@ main {
 
   #Top-row-profile {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 12px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
     margin-bottom: 15px;
     flex-wrap: wrap;
+    color: var(--dark-blue);
   }
 
-  #Top-row-profile h1 {
-    font-size: 30px;
-  }
-
-  #follow-button {
-    padding: 8px 18px;
-    font-size: 14px;
-  }
-
-  #Edit-Profile {
-    padding: 8px 18px;
-    font-size: 18px;
+  #follow-button,
+  #Edit-Profile-button {
+    padding: 0.5rem 1rem;
+    font-size: 1.25rem;
   }
 
   #StatusProfile {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 20px;
-    margin-bottom: 15px;
+    gap: 2rem;
+    margin-bottom: 1rem;
+    background-color: var(--light-gray);
+    padding: 1rem 1.25rem;
+    border-radius: 10px;
+  }
+  #profile-birthdate-div,
+  #profile-gender-div {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    font-size: 1.15rem;
+    padding-left: 1.25rem;
   }
 
-  #StatusProfile p {
-    font-size: 16px;
+  #profile-bio {
+    background-color: var(--light-gray);
+    padding: 1rem;
+    border-radius: 6px;
+    margin: 0 0.5rem;
   }
 
   .post-card {
