@@ -1,6 +1,6 @@
 async function loadJsonToStorage() {
   try {
-    if (localStorage.getItem("users")) return; // don't overwrite if already loaded
+    if (localStorage.getItem("users")) return; 
 
     const response = await fetch("../json/user.json");
     const data = await response.json();

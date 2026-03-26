@@ -6,10 +6,8 @@ if (!currentUser) {
 const urlParams = new URLSearchParams(window.location.search);
 const viewedUserId = urlParams.get("userId");
 
-// Are we viewing someone else's profile?
 const isOwnProfile = !viewedUserId || viewedUserId === String(currentUser.id);
 
-// The profile we're actually displaying
 let profileUser = currentUser;
 
 async function seedIfNeeded() {
@@ -61,7 +59,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   profileGender.textContent = profileUser.gender || "Not specified";
   profileBio.textContent = profileUser.bio || "No bio available";
 
-  // ...existing code...
   const followButton = document.querySelector("#follow-button");
   const editProfileButton = document.querySelector("#Edit-Profile-button");
 
@@ -170,4 +167,3 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.querySelector("#EditProfile-Form-Section").classList.add("hidden");
   });
 });
-// ...existing code...

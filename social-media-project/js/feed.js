@@ -1,4 +1,3 @@
-// Ensure .hidden actually hides elements
 const hiddenStyle = document.createElement("style");
 hiddenStyle.textContent =
   ".hidden { display: none !important; } .author-link { text-decoration: none; color: inherit; cursor: pointer; } .author-link:hover { text-decoration: underline; }";
@@ -23,6 +22,18 @@ async function init() {
       const res = await fetch("../json/post.json");
       localStorage.setItem("posts", JSON.stringify(await res.json()));
     }
+    const posts = JSON.parse(localStorage.getItem("posts")) || [];
+    const normalized = posts.map((post) => ({
+      ...post,
+      likedBy: post.likedBy || [],
+      likes: post.likedBy ? post.likedBy.length : (post.likes ?? 0),
+      comments: (post.comments || []).map((c) => ({
+        ...c,
+        likedBy: c.likedBy || [],
+        likes: c.likedBy ? c.likedBy.length : (c.likes ?? 0),
+      })),
+    }));
+    localStorage.setItem("posts", JSON.stringify(normalized));
     renderPosts();
   } catch (error) {
     console.log(error);
@@ -51,7 +62,7 @@ function renderPosts() {
           post.authorId === currentUser.id
             ? `<button class="delete-btn">Delete</button>`
             : "";
-        const postLikes = post.likes || 0;
+        const postLikes = post.likes ?? 0;
         const isPostLiked = post.likedBy?.includes(currentUser.id);
 
         const commentsHtml = (post.comments || [])
@@ -172,6 +183,8 @@ postForm.onsubmit = (e) => {
       content: input.value,
       timestamp: new Date().toLocaleDateString("en-CA"),
       comments: [],
+      likes: 0,
+      likedBy: [],
     });
     localStorage.setItem("posts", JSON.stringify(posts));
     input.value = "";

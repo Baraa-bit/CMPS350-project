@@ -2,7 +2,7 @@ import { nanoid } from "https://cdn.jsdelivr.net/npm/nanoid/nanoid.js";
 
 async function loadJsonToStorage() {
   try {
-    if (localStorage.getItem("users")) return; // don't overwrite if already loaded
+    if (localStorage.getItem("users")) return; 
 
     const response = await fetch("../json/user.json");
     const data = await response.json();
@@ -20,7 +20,7 @@ async function getUsers() {
 }
 
 function generateUserId() {
-  return nanoid(8); // Generates a unique ID with 8 characters
+  return nanoid(8);
 }
 
 function validatePassword(password) {
