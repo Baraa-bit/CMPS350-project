@@ -116,6 +116,11 @@ main {
   font-size: 16px;
   color: var(--dark-blue);
   border-radius: 10px;
+  background-color: var(--light-gray) ;
+  border: solid var(--border-gray) 1px;
+}
+#Edit-Profile-Form h4{
+  margin: 0.5rem 0 0 0.5rem;
 }
 
 .hidden {
