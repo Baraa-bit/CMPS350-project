@@ -1,8 +1,16 @@
-// Redirect immediately if not logged in
-const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
+let currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
 if (!currentUser) {
   window.location.href = "login.html";
 }
+
+const urlParams = new URLSearchParams(window.location.search);
+const viewedUserId = urlParams.get("userId");
+
+// Are we viewing someone else's profile?
+const isOwnProfile = !viewedUserId || viewedUserId === String(currentUser.id);
+
+// The profile we're actually displaying
+let profileUser = currentUser;
 
 async function seedIfNeeded() {
   if (!localStorage.getItem("posts")) {
@@ -18,11 +26,19 @@ async function seedIfNeeded() {
 document.addEventListener("DOMContentLoaded", async () => {
   await seedIfNeeded();
 
-  const allPosts = JSON.parse(localStorage.getItem("posts")) || [];
-  const userPosts = allPosts.filter((post) => post.authorId === currentUser.id);
+  if (!isOwnProfile) {
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const foundUser = users.find((u) => String(u.id) === viewedUserId);
+    if (foundUser) {
+      profileUser = foundUser;
+    }
+  }
 
-  const followersCount = currentUser.followers?.length || 0;
-  const followingCount = currentUser.following?.length || 0;
+  const allPosts = JSON.parse(localStorage.getItem("posts")) || [];
+  const userPosts = allPosts.filter((post) => post.authorId === profileUser.id);
+
+  const followersCount = profileUser.followers?.length || 0;
+  const followingCount = profileUser.following?.length || 0;
 
   const statusParagraphs = document.querySelectorAll("#StatusProfile p");
   statusParagraphs[0].innerHTML = `<strong>${userPosts.length}</strong> posts`;
@@ -37,15 +53,25 @@ document.addEventListener("DOMContentLoaded", async () => {
   const profileBio = document.querySelector("#profile-bio");
 
   profileName.textContent =
-    currentUser.name || currentUser.username || "Unknown";
-  profileEmail.textContent = currentUser.email;
+    profileUser.name || profileUser.username || "Unknown";
+  profileEmail.textContent = profileUser.email;
   profilePicture.src =
-    currentUser.profilePicture || "../assets/profiles/default-avatar.jpg";
-  profileBirthdate.textContent = currentUser.birthdate || "Not specified";
-  profileGender.textContent = currentUser.gender || "Not specified";
-  profileBio.textContent = currentUser.bio || "No bio available";
+    profileUser.profilePicture || "../assets/profiles/default-avatar.jpg";
+  profileBirthdate.textContent = profileUser.birthdate || "Not specified";
+  profileGender.textContent = profileUser.gender || "Not specified";
+  profileBio.textContent = profileUser.bio || "No bio available";
 
+  const followButton = document.querySelector("#follow-button");
   const editProfileButton = document.querySelector("#Edit-Profile-button");
+
+  if (isOwnProfile) {
+    followButton.style.display = "none";
+    editProfileButton.style.display = "";
+  } else {
+    followButton.style.display = "";
+    editProfileButton.style.display = "none";
+  }
+
   editProfileButton.addEventListener("click", () => {
     document
       .querySelector("#EditProfile-Form-Section")
