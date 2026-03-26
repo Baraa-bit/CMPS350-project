@@ -14,8 +14,8 @@ This is personal report for each member:
     8- made sure all my css styling followed mobile first view then tablet and desktop. used rem em for resposive layout
     9- choose the color theme for the whole project
     10- manage other team member and assgin tasks for each of them through whatapp.
-    11- I was planing to only work on auth part and left the rest for my team but not all worked their part so i have to do the profile and follow part.
-Good luck everyone!
+    11- I was planing to only work on auth part and left the rest for my team but not all worked their part so i have to do the profile and following part.
+
 
     Hadi Sleiman 202104164 (GitHub: soul-less-king)
     1- Built the complete News Feed page (feed.html) from scratch — structure, layout, and all dynamic sections.
