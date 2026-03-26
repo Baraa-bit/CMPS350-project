@@ -108,3 +108,20 @@
 .comments b {
   color: var(--dark-blue);
 }
+
+.delete-comment-btn {
+  padding: 4px 10px;
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.8em;
+  font-weight: bold;
+  background-color: #fee2e2;
+  color: #dc2626;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
+.delete-comment-btn:hover {
+  background-color: #fca5a5;
+}

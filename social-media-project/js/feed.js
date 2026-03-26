@@ -1,3 +1,4 @@
+const openComments = new Set();
 let currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
 if (!currentUser) {
   currentUser = { id: "test_id", name: "TestUser", following: [] }; 
@@ -43,7 +44,7 @@ function renderPosts() {
       
       const commentsHtml = (post.comments || []).map((c, i) => `
         <p><b>${getUserName(c.authorId)}:</b> ${c.content} 
-        ${c.authorId === currentUser.id ? `<button class="delete-comment-btn" data-index="${i}">x</button>` : ""}
+        ${c.authorId === currentUser.id ? `<button class="delete-comment-btn" data-index="${i}">Delete</button>` : ""}
         <button class="like-comment-btn" data-index="${i}" style="color: ${c.likedBy?.includes(currentUser.id) ? 'red' : 'gray'}">
           ♥ ${c.likes || 0}
         </button>
@@ -69,6 +70,12 @@ function renderPosts() {
         </article>
       `;
     }).join("");
+
+    // Restore open comment sections after re-render
+    openComments.forEach(postId => {
+      const postEl = stream.querySelector(`.post[data-id="${postId}"]`);
+      if (postEl) postEl.querySelector(".comments").classList.remove("hidden");
+    });
   } catch (error) {
     console.log(error);
   }
@@ -174,6 +181,11 @@ stream.onclick = (e) => {
     }
     else if (e.target.classList.contains("view-btn")) {
       postEl.querySelector(".comments").classList.toggle("hidden");
+      if (openComments.has(postId)) {
+        openComments.delete(postId);
+      } else {
+        openComments.add(postId);
+      }
     }
   } catch (error) {
     console.log(error);
