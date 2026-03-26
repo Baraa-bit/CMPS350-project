@@ -61,6 +61,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   profileGender.textContent = profileUser.gender || "Not specified";
   profileBio.textContent = profileUser.bio || "No bio available";
 
+  // ...existing code...
   const followButton = document.querySelector("#follow-button");
   const editProfileButton = document.querySelector("#Edit-Profile-button");
 
@@ -70,6 +71,57 @@ document.addEventListener("DOMContentLoaded", async () => {
   } else {
     followButton.style.display = "";
     editProfileButton.style.display = "none";
+  }
+
+  function updateFollowBtn(button, isFollowing) {
+    button.textContent = isFollowing ? "Unfollow" : "Follow";
+    button.classList.toggle("following", isFollowing);
+  }
+
+  if (!isOwnProfile) {
+    const isFollowing = currentUser.following?.includes(profileUser.id);
+    updateFollowBtn(followButton, isFollowing);
+
+    followButton.addEventListener("click", () => {
+      const users = JSON.parse(localStorage.getItem("users")) || [];
+      const currentUserIndex = users.findIndex(
+        (u) => String(u.id) === String(currentUser.id),
+      );
+      const profileUserIndex = users.findIndex(
+        (u) => String(u.id) === String(profileUser.id),
+      );
+      if (currentUserIndex === -1 || profileUserIndex === -1) return;
+
+      currentUser.following = currentUser.following || [];
+      users[profileUserIndex].followers =
+        users[profileUserIndex].followers || [];
+
+      const alreadyFollowing = currentUser.following.includes(profileUser.id);
+
+      if (alreadyFollowing) {
+        currentUser.following = currentUser.following.filter(
+          (id) => id !== profileUser.id,
+        );
+        users[profileUserIndex].followers = users[
+          profileUserIndex
+        ].followers.filter((id) => id !== currentUser.id);
+      } else {
+        currentUser.following.push(profileUser.id);
+        users[profileUserIndex].followers.push(currentUser.id);
+      }
+
+      users[currentUserIndex] = {
+        ...users[currentUserIndex],
+        following: currentUser.following,
+      };
+      localStorage.setItem("users", JSON.stringify(users));
+      sessionStorage.setItem("currentUser", JSON.stringify(currentUser));
+
+      const updatedFollowers = users[profileUserIndex].followers.length;
+      statusParagraphs[1].innerHTML = `<strong>${updatedFollowers}</strong> followers`;
+
+      updateFollowBtn(followButton, !alreadyFollowing);
+    });
   }
 
   editProfileButton.addEventListener("click", () => {
@@ -118,3 +170,4 @@ document.addEventListener("DOMContentLoaded", async () => {
     document.querySelector("#EditProfile-Form-Section").classList.add("hidden");
   });
 });
+// ...existing code...
