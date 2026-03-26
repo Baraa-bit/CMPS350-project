@@ -42,11 +42,12 @@ Berat Safra 202105200
     6- Added the openComments state persistence feature: comment sections stay open after any re-render (adding comments) preventing the UI from collapsing on every interaction.
 
     Yusuf Selim 202005340
-    1- Built the complete Profile page functionality from scratch — displaying user information, posts, followers, and following counts dynamically.
-    2- Implemented user authentication and session validation on the profile page to ensure only logged-in users can access it.
-    3- Developed Profile.js core logic for managing both own profile view and viewing other users' profiles using URL parameters.
-    4- Implemented profile information display (name, email, bio, gender, birthdate, profile picture) with fallback values for missing data.
-    6- Implemented the follow/unfollow functionality on user profiles with real-time follower count updates and button state management.
-    7- Added localStorage persistence for user and post data synchronization across the profile and other pages.
+    1- I Built the complete Profile page functionality from scratch — displaying user information, posts, followers, and following counts dynamically.
+    2- I moved to the profile header where I added the image profile.
+    3- Then I moved to the info profile where I added the number of followers, following and posts.
+    4- Then I moved to the profile bio where I added the both follow abd edit buttons.
+    5-In the bio the user is able to edit his username, all his info and then submit.
+    6- Styled the profile page with responsive mobile-first CSS (profile-style.css) ensuring proper layout on all screen sizes.
+
 
 Good luck everyone!
