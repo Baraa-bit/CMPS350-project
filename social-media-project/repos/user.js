@@ -37,3 +37,17 @@ export async function createUser(data) {
 export async function updateUser(id, data) {
   return prisma.user.update({ where: { id }, data });
 }
+export async function followUser(followerId, followingId) {
+  return prisma.follow.create({ data: { followerId, followingId } });
+}
+
+export async function unfollowUser(followerId, followingId) {
+  return prisma.follow.deleteMany({ where: { followerId, followingId } });
+}
+
+export async function isFollowing(followerId, followingId) {
+  const result = await prisma.follow.findFirst({
+    where: { followerId, followingId },
+  });
+  return !!result;
+}

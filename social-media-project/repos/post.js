@@ -1,4 +1,5 @@
 import * as prisma from "@/repos/prisma";
+import { nanoid } from "nanoid";
 
 export async function getFeedPosts(userId) {
   const following = await prisma.follow.findMany({
@@ -46,10 +47,9 @@ export async function getPostById(postId, currentUserId) {
 }
 
 export async function createPost(authorId, content) {
-  const timestamp = new Date().toISOString().split("T")[0];
-  const id = "p_" + Math.random().toString(36).substring(2, 8);
+  const id = "p_" + nanoid(4);
   return prisma.post.create({
-    data: { id, content, timestamp, authorId },
+    data: { id, content, authorId },
     include: {
       author: { select: { id: true, name: true, profilePicture: true } },
     },
@@ -72,4 +72,17 @@ export async function toggleLike(postId, userId) {
     await prisma.like.create({ data: { postId, userId } });
     return { liked: true };
   }
+}
+
+export async function addComment(postId, authorId, content) {
+  return prisma.comment.create({
+    data: { postId, authorId, content },
+    include: {
+      author: { select: { id: true, name: true, profilePicture: true } },
+    },
+  });
+}
+
+export async function deleteComment(commentId, authorId) {
+  return prisma.comment.delete({ where: { id: commentId, authorId } });
 }
