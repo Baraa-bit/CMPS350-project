@@ -1,5 +1,4 @@
-import * as prisma from "@/repos/prisma";
-import { nanoid } from "nanoid";
+import prisma from "@/repos/prisma";
 
 export async function getFeedPosts(userId) {
   const following = await prisma.follow.findMany({
@@ -10,7 +9,7 @@ export async function getFeedPosts(userId) {
 
   return prisma.post.findMany({
     where: { authorId: { in: [...followingIds, userId] } },
-    orderBy: { createdAt: "desc" },
+    orderBy: { timestamp: "desc" },
     include: {
       author: { select: { id: true, name: true, profilePicture: true } },
       _count: { select: { likes: true, comments: true } },
@@ -22,8 +21,9 @@ export async function getFeedPosts(userId) {
 export async function getUserPosts(userId) {
   return prisma.post.findMany({
     where: { authorId: userId },
-    orderBy: { createdAt: "desc" },
+    orderBy: { timestamp: "desc" },
     include: {
+      author: { select: { id: true, name: true, profilePicture: true } },
       _count: { select: { likes: true, comments: true } },
     },
   });
@@ -38,16 +38,28 @@ export async function getPostById(postId, currentUserId) {
         include: {
           author: { select: { id: true, name: true, profilePicture: true } },
         },
-        orderBy: { createdAt: "asc" },
+        orderBy: { timestamp: "asc" },
       },
-      likes: { where: { userId: currentUserId }, select: { id: true } },
+      likes: currentUserId
+        ? { where: { userId: currentUserId }, select: { id: true } }
+        : false,
+      _count: { select: { likes: true, comments: true } },
+    },
+  });
+}
+
+export async function getAllPosts() {
+  return prisma.post.findMany({
+    orderBy: { timestamp: "desc" },
+    include: {
+      author: { select: { id: true, name: true, profilePicture: true } },
       _count: { select: { likes: true, comments: true } },
     },
   });
 }
 
 export async function createPost(authorId, content) {
-  const id = "p_" + nanoid(4);
+  const id = "p_" + Math.random().toString(36).substring(2, 6);
   return prisma.post.create({
     data: { id, content, authorId },
     include: {
@@ -60,7 +72,6 @@ export async function deletePost(postId, authorId) {
   return prisma.post.deleteMany({ where: { id: postId, authorId } });
 }
 
-// this method for liking and unliking posts
 export async function toggleLike(postId, userId) {
   const existing = await prisma.like.findUnique({
     where: { postId_userId: { postId, userId } },
@@ -68,10 +79,9 @@ export async function toggleLike(postId, userId) {
   if (existing) {
     await prisma.like.delete({ where: { id: existing.id } });
     return { liked: false };
-  } else {
-    await prisma.like.create({ data: { postId, userId } });
-    return { liked: true };
   }
+  await prisma.like.create({ data: { postId, userId } });
+  return { liked: true };
 }
 
 export async function addComment(postId, authorId, content) {
@@ -84,5 +94,7 @@ export async function addComment(postId, authorId, content) {
 }
 
 export async function deleteComment(commentId, authorId) {
-  return prisma.comment.delete({ where: { id: commentId, authorId } });
+  return prisma.comment.deleteMany({
+    where: { id: commentId, authorId },
+  });
 }
