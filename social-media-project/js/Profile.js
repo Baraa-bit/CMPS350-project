@@ -10,7 +10,7 @@ const isOwnProfile = !viewedUserId || viewedUserId === String(currentUser.id);
 
 let profileUser = currentUser;
 
-async function seedIfNeeded() {
+async function seedIfNeeded() { 
   if (!localStorage.getItem("posts")) {
     const res = await fetch("../json/post.json");
     localStorage.setItem("posts", JSON.stringify(await res.json()));
