@@ -6,26 +6,17 @@ export async function POST(request) {
     const { email, password } = await request.json();
 
     if (!email || !password) {
-      return NextResponse.json(
-        { message: "Email and password are required." },
-        { status: 400 },
-      );
+      return NextResponse.json({ error: "Email and password are required" }, { status: 400 });
     }
 
     const user = await getUserByCredentials(email, password);
 
     if (!user) {
-      return NextResponse.json(
-        { message: "Invalid email or password." },
-        { status: 401 },
-      );
+      return NextResponse.json({ error: "Invalid email or password" }, { status: 401 });
     }
 
     return NextResponse.json(user);
-  } catch {
-    return NextResponse.json(
-      { message: "Login failed. Please try again." },
-      { status: 500 },
-    );
+  } catch (e) {
+    return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }
