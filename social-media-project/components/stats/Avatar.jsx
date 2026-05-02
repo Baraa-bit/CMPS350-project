@@ -1,4 +1,4 @@
-import { avatarColor, initials } from "../../util";
+import { avatarColor, initials } from "../util";
 
 function Avatar({ name, size = 40 }) {
   const bg = avatarColor(name);
