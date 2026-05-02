@@ -13,11 +13,16 @@ export async function getFeedPosts(userId) {
     include: {
       author: { select: { id: true, name: true, profilePicture: true } },
       _count: { select: { likes: true, comments: true } },
-      likes: { where: { userId }, select: { id: true } },
+      likes: { where: { userId }, select: { id: true, userId: true } },
+      comments: {
+        include: {
+          author: { select: { id: true, name: true, profilePicture: true } },
+        },
+        orderBy: { timestamp: "asc" },
+      },
     },
   });
 }
-
 export async function getUserPosts(userId) {
   return prisma.post.findMany({
     where: { authorId: userId },
